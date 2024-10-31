@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #D3D3D3;
+  background: url('../public/background-image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #D1BF91; /* Military khaki color */
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li {
+  margin: 20px;
+  padding: 20px;
+  max-width: 250px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: rgba(34, 34, 34, 0.8);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+
+img {
+  display: block;
+  width: 150px;  /* Set fixed width */
+  height: 150px; /* Set fixed height */
+  object-fit: cover; /* Ensures the image fills the box while preserving aspect ratio */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #4B5320; /* Military green */
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.logout-button:hover {
+  background-color: #6B8E23;
+}
