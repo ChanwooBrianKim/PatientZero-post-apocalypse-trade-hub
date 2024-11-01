@@ -90,12 +90,18 @@ router.delete('/items/:id', authenticateToken, async (req, res) => {
  */
 router.post('/trade', authenticateToken, async (req, res) => {
     const { itemId } = req.body;
+    console.log("Trade request received for itemId:", itemId);
+    console.log("Requester user ID:", req.user.id);
 
     try {
         const item = await Item.findById(itemId).populate('owner');
-        if (!item) return res.status(404).json({ message: 'Item not found' });
+        if (!item) {
+            console.log("Item not found.");
+            return res.status(404).json({ message: 'Item not found' });
+        }
 
         if (item.owner._id.toString() === req.user.id) {
+            console.log("User attempted to trade their own item.");
             return res.status(400).json({ message: 'You cannot trade your own item' });
         }
 
@@ -106,6 +112,7 @@ router.post('/trade', authenticateToken, async (req, res) => {
             status: 'pending'
         });
         await trade.save();
+        console.log("Trade successfully created:", trade);
 
         const notification = {
             message: `You have received a trade request from ${req.user.username} for ${item.name}`,
@@ -119,6 +126,7 @@ router.post('/trade', authenticateToken, async (req, res) => {
 
         res.status(201).json({ message: 'Trade request sent', trade });
     } catch (error) {
+        console.log("Error initiating trade:", error);
         res.status(500).json({ message: 'Failed to initiate trade', error });
     }
 });
