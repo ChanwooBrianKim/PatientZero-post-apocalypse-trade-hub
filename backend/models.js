@@ -36,3 +36,12 @@ const Item = mongoose.models.Item || mongoose.model('Item', itemSchema);
 const Trade = mongoose.models.Trade || mongoose.model('Trade', tradeSchema);
 
 export { User, Item, Trade }; // Export the models for use in other parts of the application
+
+/*
+Further Improvement:
+
+1. Optimise Data Persistence and Database Structure:
+For scalability, consider indexing frequently queried fields or 
+sharding the database if I am handling large datasets. Additionally, implement a caching mechanism (e.g., Redis) 
+to reduce database load on frequently accessed endpoints.
+*/

@@ -68,3 +68,13 @@ describe("Post-Apocalypse Trade Hub API", () => {
         expect(response.body.message).toBe("Trade request sent"); // Confirm the response message
     });
 });
+
+
+/*
+Further Improvement:
+
+1. Implement Comprehensive Error Handling:
+Implement more nuanced error messages, retry mechanisms, and possibly log errors to a service 
+for better monitoring in production.
+
+*/

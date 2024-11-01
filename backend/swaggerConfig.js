@@ -24,3 +24,13 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Export Swagger UI and generated docs for use in the app
 export { swaggerUi, swaggerDocs };
+
+/*
+Further Improvement:
+
+1. Improve API Documentation
+Expand the documentation to include examples for requests and responses, detailed descriptions of each endpoint, 
+and possible error codes. 
+This helps other developers and future team members understand and interact with the API more efficiently
+
+*/

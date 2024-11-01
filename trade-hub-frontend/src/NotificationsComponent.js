@@ -82,3 +82,17 @@ function NotificationsComponent({ token }) {
 }
 
 export default NotificationsComponent;
+
+/*
+Further Improvement:
+
+1. Trade Comparison Feature
+Enable users to compare item values before finalizing a trade. Display both users' items 
+side-by-side to help them assess the worth of the trade. This feature would allow users to make informed decisions 
+by seeing if the trade is equitable before choosing to accept or decline.
+
+2. Real-Time Chat and Video Communication
+Integrate a real-time chat and video functionality using Socket.IO for live messaging and WebRTC for video and audio streaming. 
+This feature would allow users to communicate in real-time directly within the service page, facilitating trade negotiations 
+and improving the overall user experience by creating a more interactive trading environment.
+*/

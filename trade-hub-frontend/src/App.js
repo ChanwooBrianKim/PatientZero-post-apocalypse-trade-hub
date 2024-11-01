@@ -58,3 +58,12 @@ function App() {
 }
 
 export default App;
+
+/*
+Further Improvement:
+
+1. Add Frontend Enhancements
+With more time, I could implement better error messaging, loading indicators, 
+and improve the overall UI/UX, potentially with design libraries like Material UI. 
+Adding client-side validation would enhance the UX and prevent invalid requests from being sent to the backend.
+*/
