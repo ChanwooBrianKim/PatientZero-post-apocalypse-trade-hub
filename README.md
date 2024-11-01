@@ -24,7 +24,7 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
     ```
 
 2. **Set Up Environment Variables**
-- Create a .env file in the root directory and add:
+- Create a .env file in the backend root directory and add:
 
     ```bash
     SECRET_KEY=your_secret_key
