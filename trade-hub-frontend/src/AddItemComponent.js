@@ -75,3 +75,10 @@ function AddItemComponent({ token }) {
 }
 
 export default AddItemComponent;
+
+/*
+Further Improvement:
+
+1. Replace image url to image upload
+
+*/
