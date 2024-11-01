@@ -32,11 +32,13 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
     ```
 
 3. **Install Dependencies** (Frontend & Backend each)
-
+- Open two terminal windows: one for the frontend and one for the backend.
+    - **Frontend**: In PatientZero-post-apocalypse-trade-hub/trade-hub-frontend:
+    - **Backend**: In PatientZero-post-apocalypse-trade-hub/backend:
     ```bash
     npm install
     ```
-4. **Run with Docker Compose**
+5. **Run with Docker Compose**
 
     ```bash
     docker-compose up --build
@@ -45,7 +47,7 @@ Docker will build and run the frontend, backend, and MongoDB services.
 
 5. **Access the App**
 
-- Navigate to http://localhost:3000 for the frontend, and backend at http://localhost:5000.
+- Navigate to http://localhost:3000 for the frontend, and backend (API) at http://localhost:5000.
 
 ## 💡 Usage
 
