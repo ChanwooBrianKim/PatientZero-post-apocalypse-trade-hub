@@ -48,7 +48,7 @@ function App() {
                         }} />
                     )}
                     <button onClick={() => setShowRegister(!showRegister)}>
-                        {showRegister ? 'Go to Login' : 'Register'} // Toggle between Login and Register
+                        {showRegister ? 'Go to Login' : 'Register'}
                     </button>
                 </div>
             )}
