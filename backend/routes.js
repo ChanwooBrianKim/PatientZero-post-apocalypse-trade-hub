@@ -18,12 +18,14 @@ const router = express.Router();
  */
 router.get('/items', authenticateToken, async (req, res) => {
     try {
+        // Find items owned by the logged-in user
         const myItems = await Item.find({ owner: req.user.id });
+        // Find items owned by other users
         const othersItems = await Item.find({ owner: { $ne: req.user.id } });
 
-        res.json({ myItems, othersItems });
+        res.json({ myItems, othersItems }); // Send response with categorized items
     } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch items' });
+        res.status(500).json({ message: 'Failed to fetch items' }); // Handle error
     }
 });
 
@@ -53,14 +55,15 @@ router.delete('/items/:id', authenticateToken, async (req, res) => {
         const itemId = req.params.id;
         const item = await Item.findById(itemId);
 
+        // Check if the item exists and is owned by the logged-in user
         if (!item || item.owner.toString() !== req.user.id) {
             return res.status(404).json({ message: "Item not found or not authorized" });
         }
 
-        await Item.findByIdAndDelete(itemId);
-        res.status(200).json({ message: "Item removed successfully" });
+        await Item.findByIdAndDelete(itemId); // Delete the item if the user is authorized
+        res.status(200).json({ message: "Item removed successfully" }); // Send success response
     } catch (error) {
-        res.status(500).json({ message: "Failed to remove item" });
+        res.status(500).json({ message: "Failed to remove item" }); // Handle error
     }
 });
 
@@ -94,17 +97,20 @@ router.post('/trade', authenticateToken, async (req, res) => {
     console.log("Requester user ID:", req.user.id);
 
     try {
+        // Find the item and populate the owner details
         const item = await Item.findById(itemId).populate('owner');
         if (!item) {
             console.log("Item not found.");
             return res.status(404).json({ message: 'Item not found' });
         }
 
+        // Prevent user from trading their own item
         if (item.owner._id.toString() === req.user.id) {
             console.log("User attempted to trade their own item.");
             return res.status(400).json({ message: 'You cannot trade your own item' });
         }
 
+        // Create a new trade request
         const trade = new Trade({
             item: item._id,
             owner: item.owner._id,
@@ -114,6 +120,7 @@ router.post('/trade', authenticateToken, async (req, res) => {
         await trade.save();
         console.log("Trade successfully created:", trade);
 
+        // Notify the item's owner of the trade request
         const notification = {
             message: `You have received a trade request from ${req.user.username} for ${item.name}`,
             sender: req.user.id,
@@ -124,10 +131,10 @@ router.post('/trade', authenticateToken, async (req, res) => {
             $push: { notifications: notification }
         });
 
-        res.status(201).json({ message: 'Trade request sent', trade });
+        res.status(201).json({ message: 'Trade request sent', trade }); // Send success response
     } catch (error) {
         console.log("Error initiating trade:", error);
-        res.status(500).json({ message: 'Failed to initiate trade', error });
+        res.status(500).json({ message: 'Failed to initiate trade', error }); // Handle error
     }
 });
 
@@ -161,23 +168,27 @@ router.post('/trade/accept', authenticateToken, async (req, res) => {
     const { tradeId } = req.body;
 
     try {
+        // Find the trade and populate requester details
         const trade = await Trade.findById(tradeId).populate('requester');
         if (!trade) return res.status(404).json({ message: 'Trade not found' });
 
+        // Ensure the logged-in user is the owner of the trade item
         if (trade.owner.toString() !== req.user.id) {
             return res.status(403).json({ message: 'You are not authorized to accept this trade' });
         }
 
+        // Update the trade status to 'accepted'
         trade.status = 'accepted';
         await trade.save();
 
+        // Notify the requester that their trade request was accepted
         await User.findByIdAndUpdate(trade.requester._id, {
             $push: { notifications: { message: `Your trade request for ${trade.item} was accepted`, sender: req.user.id } }
         });
 
-        res.json({ message: 'Trade accepted', trade });
+        res.json({ message: 'Trade accepted', trade }); // Send success response
     } catch (error) {
-        res.status(500).json({ message: 'Failed to accept trade' });
+        res.status(500).json({ message: 'Failed to accept trade' }); // Handle error
     }
 });
 
@@ -211,23 +222,27 @@ router.post('/trade/decline', authenticateToken, async (req, res) => {
     const { tradeId } = req.body;
 
     try {
+        // Find the trade and populate requester details
         const trade = await Trade.findById(tradeId).populate('requester');
         if (!trade) return res.status(404).json({ message: 'Trade not found' });
 
+        // Ensure the logged-in user is the owner of the trade item
         if (trade.owner.toString() !== req.user.id) {
             return res.status(403).json({ message: 'You are not authorized to decline this trade' });
         }
 
+        // Update the trade status to 'declined'
         trade.status = 'declined';
         await trade.save();
 
+        // Notify the requester that their trade request was declined
         await User.findByIdAndUpdate(trade.requester._id, {
             $push: { notifications: { message: `Your trade request for ${trade.item} was declined`, sender: req.user.id } }
         });
 
-        res.json({ message: 'Trade declined', trade });
+        res.json({ message: 'Trade declined', trade }); // Send success response
     } catch (error) {
-        res.status(500).json({ message: 'Failed to decline trade' });
+        res.status(500).json({ message: 'Failed to decline trade' }); // Handle error
     }
 });
 
@@ -245,11 +260,12 @@ router.post('/trade/decline', authenticateToken, async (req, res) => {
  */
 router.get('/notifications', authenticateToken, async (req, res) => {
     try {
+        // Find the user and populate notifications with sender details
         const user = await User.findById(req.user.id).populate('notifications.sender', 'username');
-        res.json(user.notifications);
+        res.json(user.notifications); // Send the list of notifications
     } catch (error) {
-        res.status(500).json({ message: 'Failed to fetch notifications' });
+        res.status(500).json({ message: 'Failed to fetch notifications' }); // Handle error
     }
 });
 
-export default router;
+export default router; // Export the router for use in the app
