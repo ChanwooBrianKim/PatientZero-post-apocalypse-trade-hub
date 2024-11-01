@@ -75,8 +75,10 @@ To bring down the containers, use:
     docker-compose up --build
     ```
 
-## Troubleshooting
+## 🔄 Additional Notes & Troubleshooting
 
+- **First-Time Docker Run**: If you encounter errors related to ports, try stopping any other services using ports 3000, 5000, or 27017.
+- **Re-Running the Project**: If you’ve run the project before, use docker-compose down to stop previous instances before running docker-compose up again.
 - **Container Not Starting**: Check .env variables and ensure Docker is running.
 - **Frontend/Backend Errors**: Review console logs for details.
 - **JWT or Authorization Issues**: Verify the SECRET_KEY is correctly set in the .env file.
