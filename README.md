@@ -31,7 +31,7 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
     MONGO_URI=mongodb://mongo:27017/post_apocalypse_trade_hub
     ```
 
-3. **Install Dependencies**
+3. **Install Dependencies** (Frontend & Backend each)
 
     ```bash
     npm install
