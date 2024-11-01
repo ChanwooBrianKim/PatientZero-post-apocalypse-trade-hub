@@ -1,8 +1,8 @@
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 async function generateHash(password) {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, salt);
     console.log("Hashed Password:", hashedPassword);
 }
 

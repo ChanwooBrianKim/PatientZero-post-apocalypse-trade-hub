@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import router from './routes.js';
@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
         return res.status(400).json({ message: "Username already taken" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(password, 10);
     const user = new User({ username, password: hashedPassword });
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
@@ -65,7 +65,7 @@ app.post('/login', async (req, res) => {
         return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
     if (!isPasswordValid) {
         return res.status(400).json({ message: "Invalid username or password" });
     }
