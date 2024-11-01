@@ -7,50 +7,52 @@ import NotificationsComponent from './NotificationsComponent';
 import './App.css';
 
 function App() {
+    // State to manage the authentication token, initialized with any token in localStorage
     const [token, setToken] = useState(localStorage.getItem('token'));
+    // State to toggle between showing the Login and Register components
     const [showRegister, setShowRegister] = useState(false);
 
-    // Check if there's a saved token in localStorage on component mount
+    // Check for a saved token in localStorage when the component mounts
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
         if (savedToken) {
-            setToken(savedToken);
+            setToken(savedToken); // Set token if found in localStorage
         }
     }, []);
 
-    // Handle logout and clear the token from both state and localStorage
+    // Function to handle logout by removing token from state and localStorage
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        setToken(null);
+        localStorage.removeItem('token'); // Clear token from localStorage
+        setToken(null); // Set token state to null
     };
 
     return (
         <div className="App">
             <h1>The Post-Apocalypse Trade Hub</h1>
             {token ? (
-                // Display items and Add Item form if the user is logged in
+                // Show items, Add Item form, and logout button if user is logged in
                 <div>
-                    <ItemsComponent token={token} />
-                    <AddItemComponent token={token} /> {/* Add Item component for logged-in users */}
-                    <button className="logout-button" onClick={handleLogout}>Logout</button>
+                    <ItemsComponent token={token} /> {/* Component to display user's items */}
+                    <AddItemComponent token={token} /> {/* Component to add new items */}
+                    <button className="logout-button" onClick={handleLogout}>Logout</button> {/* Logout button */}
                 </div>
             ) : (
-                // Display Login or Register component based on `showRegister` state
+                // Show Login or Register components based on `showRegister` state
                 <div>
                     {showRegister ? (
-                        <RegisterComponent /> // Show Register form
+                        <RegisterComponent /> // Register form
                     ) : (
                         <LoginComponent onLogin={(newToken) => {
-                            setToken(newToken);
-                            localStorage.setItem('token', newToken); // Save token to localStorage on login
+                            setToken(newToken); // Set token state on successful login
+                            localStorage.setItem('token', newToken); // Save token to localStorage
                         }} />
                     )}
                     <button onClick={() => setShowRegister(!showRegister)}>
-                        {showRegister ? 'Go to Login' : 'Register'}
+                        {showRegister ? 'Go to Login' : 'Register'} // Toggle between Login and Register
                     </button>
                 </div>
             )}
-            {token && <NotificationsComponent token={token} />}
+            {token && <NotificationsComponent token={token} />} {/* Show notifications if logged in */}
         </div>
     );
 }
