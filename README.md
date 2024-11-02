@@ -138,3 +138,26 @@ MIT License
     ```
 
 Enjoy trading in the new world! 🌍
+
+
+## Further improvement summary
+Please refer to the code files for details
+
+- **models.js**: 
+Optimise Data Persistence and Database Structure:
+
+- **swaggerConfig.js**:
+Improve API Documentation
+
+- **routes.test.js**:
+Implement Comprehensive Error Handling:
+
+- **AddItemComponent.js**:
+Replace image url to image upload
+
+- **App.js**:
+Add Frontend Enhancements
+
+- **NotificationComponent.js**:
+1. Trade Comparison Feature
+2. Real-Time Chat and Video Communication
