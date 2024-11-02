@@ -82,12 +82,18 @@ To bring down the containers, use:
     ```
 
 ## 🔄 Additional Notes & Troubleshooting
-
 - **First-Time Docker Run**: If you encounter errors related to ports, try stopping any other services using ports 3000, 5000, or 27017.
 - **Re-Running the Project**: If you’ve run the project before, use docker-compose down to stop previous instances before running docker-compose up again.
 - **Container Not Starting**: Check .env variables and ensure Docker is running.
+- **Docker Desktop Running**: Ensure Docker Desktop is fully running before starting. You should see "Docker Desktop is running" in the system tray icon.
+- **First-Time Docker Run**: If you encounter errors related to ports, try stopping any other services using ports 3000, 5000, or 27017.
 - **Frontend/Backend Errors**: Review console logs for details.
 - **JWT or Authorization Issues**: Verify the SECRET_KEY is correctly set in the .env file.
+- **Environment Variables**: Double-check that the `.env` file is correctly set up in the `backend` directory with the necessary variables.
+- **Port Conflicts**: If you encounter port conflict errors, ensure no other applications are using ports 3000, 5000, or 27017. You can modify these in the `docker-compose.yml` file if necessary.
+- **Build Errors**: If you experience issues during `docker-compose up --build`, try running:
+  ```bash
+  docker-compose up --build --no-cache
 
 ## 📄 License
 MIT License
