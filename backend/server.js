@@ -14,7 +14,9 @@ const SECRET_KEY = process.env.SECRET_KEY || "your_secret_key";
 console.log("SECRET_KEY:", SECRET_KEY);
 
 // Connect to MongoDB using Mongoose
-mongoose.connect('mongodb://localhost:27017/post_apocalypse_trade_hub', {
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/post_apocalypse_trade_hub';
+
+mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => console.log('Connected to MongoDB'))
