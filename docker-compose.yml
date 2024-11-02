@@ -3,29 +3,32 @@ services:
   mongo:
     image: mongo
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Exposes MongoDB on localhost:27017
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db  # Persists MongoDB data even if the container restarts
+    restart: always  # Restart MongoDB if it crashes
 
   backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Exposes the backend API on localhost:5000
     depends_on:
-      - mongo
+      - mongo  # Ensures MongoDB starts before the backend
     env_file:
-      - ./backend/.env
+      - ./backend/.env  # Loads environment variables for the backend from the .env file
+    restart: always  # Restart backend if it crashes
 
   frontend:
     build:
       context: .
       dockerfile: trade-hub-frontend/Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Exposes the frontend on localhost:3000
     depends_on:
-      - backend
+      - backend  # Ensures backend starts before the frontend
+    restart: always  # Restart frontend if it crashes
 
 volumes:
   mongo-data:
