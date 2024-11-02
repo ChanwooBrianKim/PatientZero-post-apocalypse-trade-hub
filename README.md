@@ -30,6 +30,12 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
     SECRET_KEY=your_secret_key
     MONGO_URI=mongodb://mongo:27017/post_apocalypse_trade_hub
     ```
+- **PORT**: The port for the backend server (default is 5000).
+- **SECRET_KEY**: A unique secret key for signing JWT tokens. Replace your_secret_key with your own secure key.
+- **MONGO_URI**: The URI for connecting to MongoDB.
+For this Docker setup, use mongodb://mongo:27017/post_apocalypse_trade_hub, as mongo is the Docker service name for MongoDB. This URI will work automatically when running the project with Docker Compose.
+
+If you want to run the backend outside of Docker for development purposes, you can set MONGO_URI=mongodb://localhost:27017/post_apocalypse_trade_hub.
 
 3. **Install Dependencies** (Frontend & Backend each)
 - Open two terminal windows: one for the frontend and one for the backend.
