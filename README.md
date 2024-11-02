@@ -59,7 +59,8 @@ Docker will build and run the frontend, backend, and MongoDB services.
 
 1. **Register and Login**: Create an account and authenticate to start trading.
 2. **Item Management**: Add items to your inventory or remove items you no longer want to trade.
-3. **Accept or Remove Trades**: Accept other users' items or remove your own listed items.
+   (Other users - logged in with different users can see the items added)
+4. **Accept or Remove Trades**: Accept other users' items or remove your own listed items.
 
 ## 🛠️ Technologies Used
 
