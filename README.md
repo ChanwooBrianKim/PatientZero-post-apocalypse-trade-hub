@@ -33,8 +33,8 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
 
 3. **Install Dependencies** (Frontend & Backend each)
 - Open two terminal windows: one for the frontend and one for the backend.
-    - **Frontend**: In PatientZero-post-apocalypse-trade-hub/trade-hub-frontend:
-    - **Backend**: In PatientZero-post-apocalypse-trade-hub/backend:
+    - **Frontend** (cd trade-hub-frontend): In PatientZero-post-apocalypse-trade-hub/trade-hub-frontend:
+    - **Backend** (cd backend): In PatientZero-post-apocalypse-trade-hub/backend:
     ```bash
     npm install
     ```
