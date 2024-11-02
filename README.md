@@ -20,7 +20,6 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
 
     ```bash
     git clone https://github.com/ChanwooBrianKim/PatientZero-post-apocalypse-trade-hub.git
-    cd post-apocalypse-trade-hub
     ```
 
 2. **Set Up Environment Variables**
