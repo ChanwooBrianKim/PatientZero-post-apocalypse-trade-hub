@@ -26,6 +26,7 @@ Welcome to The Post-Apocalypse Trade Hub, a real-time trading app where users in
 - Create a .env file in the backend root directory and add:
 
     ```bash
+    PORT=5000
     SECRET_KEY=your_secret_key
     MONGO_URI=mongodb://mongo:27017/post_apocalypse_trade_hub
     ```
