@@ -45,7 +45,7 @@ If you want to run the backend outside of Docker for development purposes, you c
     npm install
     ```
 5. **Run with Docker Compose**
-
+    Make sure the Docker engine running.
     ```bash
     docker-compose up --build
     ```
