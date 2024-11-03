@@ -115,3 +115,13 @@ app.listen(PORT, () => {
 
 // Export the app for testing purposes
 export default app;
+
+/*
+ Further Improvement:
+ * the MVC (Model-View-Controller) architecture. This will involve:
+ * - Moving route handler logic to dedicated controller files (e.g., userController.js, itemController.js)
+ * - Separating routes into individual route files (e.g., userRoutes.js, itemRoutes.js)
+ * - Keeping server setup and configuration focused in server.js
+ * 
+ * This approach will help improve code organization, maintainability, and scalability as the project grows.
+ */

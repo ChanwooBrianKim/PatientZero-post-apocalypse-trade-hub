@@ -162,3 +162,6 @@ Add Frontend Enhancements
 - **NotificationComponent.js**:
 1. Trade Comparison Feature
 2. Real-Time Chat and Video Communication
+
+- **server.js**:
+1. MVC (Model-View-Controller) architecture build (separating server.js into controllers and routes)
