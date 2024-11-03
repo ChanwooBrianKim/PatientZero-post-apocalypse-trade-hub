@@ -164,4 +164,4 @@ Add Frontend Enhancements
 2. Real-Time Chat and Video Communication
 
 - **server.js**:
-1. MVC (Model-View-Controller) architecture build (separating server.js into controllers and routes)
+1. MVC (Model-View-Controller) architecture build for project growth by separating server.js into controllers and routes
