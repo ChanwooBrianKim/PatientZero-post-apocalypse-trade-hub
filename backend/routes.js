@@ -6,6 +6,22 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /validate-token:
+ *   get:
+ *     summary: Validates if the provided token is still valid
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Token is valid
+ *       401:
+ *         description: Invalid or expired token
+ */
+router.get('/validate-token', authenticateToken, (req, res) => {
+    res.status(200).json({ message: 'Token is valid' });
+});
+
+/**
+ * @swagger
  * /items:
  *   get:
  *     summary: Fetch "My Items" and "Other's Items" for the logged-in user
