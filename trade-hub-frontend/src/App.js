@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import LoginComponent from './LoginComponent';
 import RegisterComponent from './RegisterComponent';
 import ItemsComponent from './ItemsComponent';
@@ -12,11 +13,19 @@ function App() {
     // State to toggle between showing the Login and Register components
     const [showRegister, setShowRegister] = useState(false);
 
-    // Check for a saved token in localStorage when the component mounts
+    // Check for a saved token in localStorage and validate it when the component mounts
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
         if (savedToken) {
-            setToken(savedToken); // Set token if found in localStorage
+            // Send a request to the backend to validate the token
+            axios.get('http://localhost:5000/validate-token', {
+                headers: { Authorization: `Bearer ${savedToken}` },
+            })
+            .then(() => setToken(savedToken)) // Token is valid, keep it
+            .catch(() => {
+                localStorage.removeItem('token'); // Token is invalid, remove it
+                setToken(null); // Reset token state
+            });
         }
     }, []);
 
